@@ -20,11 +20,19 @@ aluno = {"alunos": [{
 class Aluno(Exception):
   pass
 
-def lista_alunos():
+def aluno_por_id(id_aluno):
+    lista_alunos = aluno['alunos']
+    for dicionario in lista_alunos:
+        if dicionario['id'] == id_aluno:
+            return dicionario
+    raise Aluno
+
+def list_alunos():
    return aluno["alunos"]
 
-def adiciona_aluno(dict):
+def add_aluno(dict):
    aluno['alunos'].append(dict)
 
-def deleta_aluno():
-    aluno['alunos'] = []
+def delete_aluno(id_aluno):
+    alunos = aluno_por_id(id_aluno)
+    aluno['alunos'].remove(alunos)

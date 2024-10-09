@@ -1,24 +1,21 @@
-from flask import Flask, request
-import module_aluno as model
+from flask import Blueprint, request
+from .module_aluno import list_alunos, add_aluno, delete_aluno
 
-app = Flask(__name__) 
+alunos_blueprint = Blueprint('alunos', __name__)
 
-@app.route('/aluno', methods=['GET'])
-def get_aluno():
+@alunos_blueprint.route('/alunos/<int:id_aluno>', methods=['GET'])
+def get_aluno(id_aluno):
    print('lista de alunos')
-   return model.lista_alunos()
+   return list_alunos(id_aluno)
 
-@app.route("/cria-aluno", methods=["POST"])
-def cria_aluno():
+@alunos_blueprint.route("/alunos", methods=["POST"])
+def create_aluno():
     dict = request.json
     dict['id'] = int(dict['id'])
-    model.adiciona_aluno(dict)
-    return model.lista_alunos()
+    add_aluno(dict)
+    return list_alunos()
 
-@app.route("/deleta-aluno", methods=["DELETE"])
-def reseta():
-    model.deleta_aluno()
+@alunos_blueprint.route("/alunos/<int:id_aluno>", methods=["DELETE"])
+def delete_aluno(id_aluno):
+    delete_aluno(id_aluno)
     return "aluno deletada" 
-
-if __name__ == '__main__':
-   app.run(debug=True)

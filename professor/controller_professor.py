@@ -1,23 +1,20 @@
-from flask import Flask, request
-import module_professor as model
+from flask import Blueprint, request, jsonify
+from .module_professor import list_prof, add_prof, delete_prof
 
-app = Flask(__name__) 
+professor_blueprint = Blueprint('professor', __name__) 
 
-@app.route('/professor', methods=['GET'])
-def get_professor():
-    return model.list_professor()
+@professor_blueprint.route('/professor/<int:id_professor>', methods=['GET'])
+def get_prof(id_professor):
+    return jsonify(list_prof(id_professor))
 
-@app.route("/cria-professor", methods=["POST"])
-def cria_professor():
+@professor_blueprint.route("/professor", methods=["POST"])
+def create_prof():
     dict = request.json
     dict['id'] = int(dict['id'])
-    model.adiciona_professor(dict)
-    return model.lista_professor()
+    add_prof(dict)
+    return jsonify(list_prof())
 
-@app.route("/deleta-professor", methods=["DELETE"])
-def deleta():
-    model.deleta_professor()
+@professor_blueprint.route("/professor/<int:id_professor>", methods=["DELETE"])
+def delete_prof(id_professor):
+    delete_prof(id_professor)
     return "professor deletado" 
-
-if __name__ == '__main__':
-    app.run(debug=True)

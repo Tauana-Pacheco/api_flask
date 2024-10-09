@@ -1,24 +1,21 @@
-from flask import Flask, request
-import module_turma as model
+from flask import Blueprint, request, jsonify
+from .module_turma import list_turma, add_turma, delete_turma
 
-app = Flask(__name__) 
+turma_blueprint = Blueprint('turma', __name__) 
 
-@app.route('/turma', methods=['GET'])
-def get_turma():
+@turma_blueprint.route('/turma/<int:id_turma>', methods=['GET'])
+def get_turma(id_turma):
     print('lista turmas')
-    return model.lista_turma()
+    return jsonify(list_turma(id_turma))
 
-@app.route("/cria-turma", methods=["POST"])
-def cria_turma():
+@turma_blueprint.route("/turma", methods=["POST"])
+def create_turma():
     dict = request.json
     dict['id'] = int(dict['id'])
-    model.adiciona_turma(dict)
-    return model.lista_turma()
+    add_turma(dict)
+    return jsonify(list_turma())
 
-@app.route("/deleta-turma", methods=["DELETE"])
-def reseta():
-    model.deleta_turma()
+@turma_blueprint.route("/turma/<int:id_turma>", methods=["DELETE"])
+def delete_turma(id_turma):
+    delete_turma(id_turma)
     return "turma deletada" 
-
-if __name__ == '__main__':
-    app.run(debug=True)
