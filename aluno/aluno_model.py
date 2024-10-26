@@ -6,8 +6,8 @@ class Aluno(db.Model):
     idade = db.Column(db.Integer) # not null redundante?
     turma = db.Column(db.String(5))
     data_nasc = db.Column(db.Date) # not nul redundante?
-    nota_1st = db.Column(db.Decimal)
-    nota_2nd = db.Column(db.Decimal)
+    nota_1st = db.Column(db.Float) # not nul redundante?
+    nota_2nd = db.Column(db.Float) # not nul redundante?
 
     def __init__(self, id):
          self.id = id

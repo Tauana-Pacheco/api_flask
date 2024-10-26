@@ -1,10 +1,10 @@
 import os
 from config import app, db
-#from aluno.aluno_controller import alunos_blueprint
+from aluno.aluno_controller import alunos_blueprint
 from professor.professor_controller import professor_blueprint
 from turma.turma_controller import turma_blueprint
 
-#app.register_blueprint(alunos_blueprint)
+app.register_blueprint(alunos_blueprint)
 app.register_blueprint(professor_blueprint)
 app.register_blueprint(turma_blueprint)
 
