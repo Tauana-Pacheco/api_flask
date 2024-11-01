@@ -12,7 +12,11 @@
   <h1>Lista de turmas</h1>
   <ul>
     {% for turma in turmas %}
-    <li><a href="{{ url_for('turmas.get_turma', id_turma=turma.id) }}">{{ turma.descricao }} (ID: {{ turma.id }})</a></li>
+    <li>
+      <a href="{{ url_for('turmas.get_turma', id_turma=turma.id) }}">
+      {{ turma.descricao }} (Professor da turma: {{ turma.professor_id }})
+      </a>
+    </li>
     {% endfor %}
   </ul>
   <p><a href="{{ url_for('turmas.adicionar_turma_page')}}">Adicionar nova turma</a></p> 

@@ -12,12 +12,16 @@
     <h1>Seja Bem vindo ao nosso sistema!</h1>
       <h2>Alunos</h2>
       <ul>
-        <li><a href="{{ url_for('alunos.adicionar_aluno_page') }}">Adicionar novo aluno no sistema</a></li>
-        <li><a href="{{ url_for('alunos.get_alunos') }}">Confira nosso quadro de alunos</a></li>
+        <li><a href="{{ url_for('alunos.adicionar_aluno_page') }}">Adicionar novo aluno</a></li>
+        <li><a href="{{ url_for('alunos.get_alunos') }}">Quadro de alunos</a></li>
       </ul>      
     </section>
     <section>
       <h2>Professores</h2>
+      <ul>
+        <li><a href="{{ url_for('professores.adicionar_professor_page') }}">Adicionar novo professor</a></li>
+        <li><a href="{{ url_for('professores.get_professores') }}">Quadro de professores</a></li>
+      </ul> 
     </section>
     <section>
       <h2>Turmas</h2>

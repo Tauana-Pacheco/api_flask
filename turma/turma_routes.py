@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from .turma_model import TurmaNaoEncontrado, turma_por_id, listar_turmas, atualizar_turma, adicionar_turma, excluir_turma
+from professor.prof_model import Professor 
 
 turma_blueprint = Blueprint('turmas', __name__)
 
@@ -21,17 +22,16 @@ def get_turma(id_turma):
 ## ROTA ACESSAR O FORMULARIO DE CRIAÇÃO DE UM NOVAS TURMAS
 @turma_blueprint.route('/turmas/adicionar', methods=['GET'])
 def adicionar_turma_page():
-    return render_template('criarTurmas.html')
+    professores = Professor.query.all()  # Busca todos os professores
+    return render_template('criarTurmas.html', professores=professores)
 
 ## ROTA QUE CRIA UM NOVA TURMA
 @turma_blueprint.route('/turmas', methods=['POST'])
 def create_turma():
     descricao = request.form['descricao']
     professor_id = request.form['professor_id']
-   # ativo = request.form['ativo']
     nova_turma = {
          'descricao': descricao, 
-       #  'ativo': ativo,
          'professor_id': professor_id,
          }
     adicionar_turma(nova_turma)

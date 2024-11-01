@@ -9,12 +9,11 @@ class Professor(db.Model):
   observacoes = db.Column(db.String(80))
   turmas = db.relationship('Turma', backref='professor', lazy=True)
 
-  def __init__(self, nome, idade, materia, observacoes, turmas):
+  def __init__(self, nome, idade, materia, observacoes):
     self.nome = nome
     self.idade = idade
     self.materia  = materia
     self.observacoes = observacoes
-    self.turmas = turmas
 
   def to_dict(self):
     return {
