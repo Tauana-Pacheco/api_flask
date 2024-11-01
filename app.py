@@ -9,7 +9,6 @@ app.register_blueprint(profs_blueprint)
 app.register_blueprint(turma_blueprint)
 
 with app.app_context():
-    db.drop_all()
     db.create_all()
 
 if __name__ == '__main__':

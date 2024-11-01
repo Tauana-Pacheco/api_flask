@@ -15,6 +15,7 @@
     <li><a href="{{ url_for('alunos.get_aluno', id_aluno=aluno.id) }}">{{ aluno.nome }} (ID: {{ aluno.id }})</a></li>
     {% endfor %}
   </ul>
+  <p><a href="{{ url_for('alunos.adicionar_aluno_page')}}">Adicionar novo aluno</a></p>
 </body>
 
 </html>
