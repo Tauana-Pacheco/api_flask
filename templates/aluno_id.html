@@ -22,7 +22,10 @@
     <button type="submit">Excluir Aluno</button>
   </form>
   <div>
-    <button onclick="{{ url_for('alunos.get_alunos') }}">Voltar para a lista de alunos</a>
+    <a href="{{ url_for('alunos.get_alunos') }}">Voltar para a lista de alunos</a>
+  </div>
+  <div>
+    <a href="{{ url_for('alunos.editar_aluno_page', id_aluno=aluno.id)}}">Atualizar dados do estudante</a>
   </div>
 </body>
 

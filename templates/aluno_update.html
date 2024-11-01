@@ -12,10 +12,23 @@
     <form action="{{ url_for('alunos.update_aluno', id_aluno=aluno.id) }}" method="POST">
       <!-- Altere o método de envio para PUT -->
       <input type="hidden" name="_method" value="PUT">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" value="{{ aluno.nome }}">
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" value="{{ aluno.nome }}"><br>
+     
+      <label for="nota_1st">Primeiro semestre</label>
+      <input type="number" id="nota_1st" name="nota_1st" value="{{ aluno.nota_1st }}"><br>
+      
       <label for="idade">Idade:</label>
-      <input type="number" id="idade" name="idade" value="{{ aluno.idade }}">
+      <input type="number" id="idade" name="idade" value="{{ aluno.idade }}"><br>
+
+      <label for="turma_id">Turma</label>
+      <input type="text" id="turma_id" name="turma_id" value="{{ aluno.turma_id }}"><br>
+
+      <label for="nota_1st"> Primeiro semestre </label>
+      <input type="number" id="nota_1st" name="nota_1st" value="{{ aluno.nota_1st }}"><br>
+      
+      <label for="nota_2st">Segundo semestre</label>
+      <input type="number" id="nota_2st" name="nota_2st" value="{{ aluno.nota_2st }}"><br>
       <button type="submit">Atualizar</button>
     </form>
   </body>

@@ -55,6 +55,9 @@ def atualizar_aluno(id_aluno, novos_dados):
         raise AlunoNaoEncontrado
     aluno.nome = novos_dados['nome']
     aluno.idade = novos_dados['idade']
+    aluno.turma_id = novos_dados['turma_id']
+    aluno.nota_1st = novos_dados['nota_1st']
+    aluno.nota_2st = novos_dados['nota_2st']
     db.session.commit()
 
 def excluir_aluno(id_aluno):
