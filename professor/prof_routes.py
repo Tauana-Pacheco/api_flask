@@ -1,5 +1,5 @@
 from flask import Blueprint, request, render_template,redirect, url_for, jsonify
-from .prof_model import Professor, ProfessorNaoEncontrado, adicionar_professor, listar_professores, professor_por_id, excluir_professor
+from .prof_model import Professor, ProfessorNaoEncontrado, atualizar_professor, adicionar_professor, listar_professores, professor_por_id, excluir_professor
 from config import db
 from turma.turma_model import Turma
 
@@ -59,6 +59,27 @@ def editar_professor_page(id_professor):
         return render_template('professores_update.html', professor=professor)
     except ProfessorNaoEncontrado:
         return jsonify({'message': 'Professor não encontrado'}), 404
+
+
+## ROTA QUE EDITA UM ALUNO
+@professores_blueprint.route('/professores/<int:id_professor>/editar', methods=['PUT',"POST"])
+def update_professor(id_professor):
+        print("Dados recebidos no formulário:", request.form)
+        try:
+            professor = professor_por_id(id_professor)
+            nome = request.form['nome']
+            professor['nome'] = nome
+            idade = request.form['idade']
+            professor['idade'] = idade
+            materia = request.form['materia']
+            professor['materia'] = materia
+            observacoes = request.form['observacoes']
+            professor['observacoes'] = observacoes
+            atualizar_professor(id_professor, professor)
+            return redirect(url_for('professores.get_professor', id_professor=id_professor))
+        except ProfessorNaoEncontrado:
+            return jsonify({'message': 'Professor não encontrado'}), 404
+   
 
 ## ROTA QUE DELETA UM PROFESSOR
 @professores_blueprint.route('/professores/delete/<int:id_professor>', methods=['DELETE','POST'])

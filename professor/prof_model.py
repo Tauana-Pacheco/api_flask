@@ -22,7 +22,7 @@ class Professor(db.Model):
           'idade': self.idade,
           'materia': self.materia,
           'observacoes': self.observacoes,
-          'turmas': [turma.to_dict() for turma in self.turmas]
+        #  'turmas': [turma.to_dict() for turma in self.turmas]
         }
 
 class ProfessorNaoEncontrado(Exception):
