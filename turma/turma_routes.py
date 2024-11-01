@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from .turma_model import Turma, TurmaNaoEncontrado, turma_por_id, listar_turmas, atualizar_turma, adicionar_turma, excluir_turma
 from professor.prof_model import Professor 
+from config import db
 
 turma_blueprint = Blueprint('turmas', __name__)
 
@@ -31,7 +32,8 @@ def create_turma():
     descricao = request.form['descricao']
     professor_id = request.form['professor_id']
     nova_turma = Turma(descricao=descricao, professor_id=professor_id)
-    adicionar_turma(nova_turma)
+    db.session.add(nova_turma)
+    db.session.commit()
     return redirect(url_for('turmas.get_turmas'))
 
 ## ROTA PARA O FORMULARIO PARA EDITAR UM NOVO ALUNO
