@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Informações</title>
+  </head>
+
+  <body>
+    <section>
+    <h1>Seja Bem vindo ao nosso sistema!</h1>
+      <h2>Alunos</h2>
+      <ul>
+        <li><a href="{{ url_for('alunos.adicionar_aluno_page') }}">Adicionar novo aluno</a></li>
+        <li><a href="{{ url_for('alunos.get_alunos') }}">Quadro de alunos</a></li>
+      </ul>      
+    </section>
+    <section>
+      <h2>Professores</h2>
+      <ul>
+        <li><a href="{{ url_for('professores.adicionar_professor_page') }}">Adicionar novo professor</a></li>
+        <li><a href="{{ url_for('professores.get_professores') }}">Quadro de professores</a></li>
+      </ul> 
+    </section>
+    <section>
+      <h2>Turmas</h2>
+      <ul>
+        <li><a href="{{ url_for('turmas.adicionar_turma_page')}}">Adicionar nova turma</a></li>
+        <li><a href="{{ url_for('turmas.get_turmas')}}">Quadro de turmas</a></li>
+      </ul>   
+    </section>
+  </body>
+
+</html>
