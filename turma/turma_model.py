@@ -10,14 +10,12 @@ class Turma(db.Model):
   def __init__(self, descricao, professor_id):
     self.descricao = descricao
     self.professor_id = professor_id
-   # self.ativo = ativo
 
   def to_dict(self):
       return {
           'id': self.id,
           'descricao': self.descricao,
           'professor_id': self.professor_id,
-         # 'ativo': self.ativo,
       }
 
 class TurmaNaoEncontrado(Exception):
@@ -37,7 +35,6 @@ def adicionar_turma(turma_data):
     nova_turma = Turma( 
         descricao=turma_data['descricao'],
         professor_id=turma_data['professor_id'],
-      #  ativo=turma_data['ativo'],
         )
     db.session.add(nova_turma)
     db.session.commit()
@@ -48,7 +45,6 @@ def atualizar_turma(id_turma, novos_dados):
         raise TurmaNaoEncontrado
     turma.descricao = novos_dados['descricao']
     turma.professor_id = novos_dados['professor_id']
-    #turma.ativo = novos_dados['ativo']
     db.session.commit()
 
 def excluir_turma(id_turma):

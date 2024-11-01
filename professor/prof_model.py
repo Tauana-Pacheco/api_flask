@@ -22,7 +22,6 @@ class Professor(db.Model):
           'idade': self.idade,
           'materia': self.materia,
           'observacoes': self.observacoes,
-        #  'turmas': [turma.to_dict() for turma in self.turmas]
         }
 
 class ProfessorNaoEncontrado(Exception):
@@ -44,7 +43,6 @@ def adicionar_professor(professor_data):
         idade=professor_data['idade'],
         materia=professor_data['materia'],
         observacoes=professor_data['observacoes'],
-        turmas=professor_data['turmas'],
         )
     db.session.add(novo_professor)
     db.session.commit()
@@ -57,7 +55,6 @@ def atualizar_professor(id_professor, novos_dados):
    professor.idade = novos_dados['idade']
    professor.materia = novos_dados['materia']
    professor.observacoes = novos_dados['observacoes']
-   professor.turmas = novos_dados['turmas']
    db.session.commit()
 
 def excluir_professor(id_professor):

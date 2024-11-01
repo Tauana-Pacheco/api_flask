@@ -16,13 +16,6 @@
     <label for="idade">Idade:</label><br>
     <input type="number" id="idade" name="idade" required><br>
     
-    <label for="turmas">Turmas:</label><br>
-    <select id="turmas" name="turmas" multiple style="width: 80px;">
-      {% for turma in turmas %}
-        <option value="{{ turma.descricao}}">{{ turma.descricao }}</option>
-      {% endfor %}
-    </select><br>
-    
     <label for="materia">Matéria:</label><br>
     <input type="text" id="materia" name="materia" required><br>
     

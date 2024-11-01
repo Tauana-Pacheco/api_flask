@@ -14,7 +14,12 @@
     <label for="descricao">Descrição</label><br>
     <input type="text" id="descricao" name="descricao"><br>
     <label for="professor_id">Professor</label><br>
-    <input type="text" id="professor_id" name="professor_id"><br>
+    <select id="professor_id" name="professor_id" style="width: 80px">
+      {% for professor in professores %}
+          <option value="{{ professor.id }}">{{ professor.nome }}</option>
+      {% endfor %}
+  </select><br>
+
     <input type="submit" value="Adicionar Turma">
   </form>
 </body>
