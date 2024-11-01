@@ -7,7 +7,7 @@ alunos_blueprint = Blueprint('alunos', __name__)
 
 @alunos_blueprint.route('/', methods=['GET'])
 def getIndex():
-    return "Meu index"
+    return render_template("home.html")
 
 ## ROTA PARA TODOS OS ALUNOS
 @alunos_blueprint.route('/alunos', methods=['GET'])
@@ -33,7 +33,17 @@ def adicionar_aluno_page():
 @alunos_blueprint.route('/alunos', methods=['POST'])
 def create_aluno():
     nome = request.form['nome']
-    novo_aluno = {'nome': nome}
+    idade = request.form['idade']
+    turma_id = request.form['turma_id']
+    nota_1st = request.form['nota_1st']
+    nota_2st = request.form['nota_2st']
+    novo_aluno = {
+         'nome': nome, 
+         'idade': idade,
+         'turma_id': turma_id,
+         'nota_1st': nota_1st,
+         'nota_2st': nota_2st,
+         }
     adicionar_aluno(novo_aluno)
     return redirect(url_for('alunos.get_alunos'))
 
@@ -47,13 +57,21 @@ def editar_aluno_page(id_aluno):
         return jsonify({'message': 'Aluno não encontrado'}), 404
 
 ## ROTA QUE EDITA UM ALUNO
-@alunos_blueprint.route('/alunos/<int:id_aluno>', methods=['PUT',"POST"])
+@alunos_blueprint.route('/alunos/<int:id_aluno>/editar', methods=['PUT',"POST"])
 def update_aluno(id_aluno):
         print("Dados recebidos no formulário:", request.form)
         try:
             aluno = aluno_por_id(id_aluno)
             nome = request.form['nome']
             aluno['nome'] = nome
+            idade = request.form['idade']
+            aluno['idade'] = idade
+            turma_id = request.form['turma_id']
+            aluno['turma_id'] = turma_id
+            nota_1st = request.form['nota_1st']
+            aluno['nota_1st'] = nota_1st
+            nota_2st = request.form['nota_2st']
+            aluno['nota_2st'] = nota_2st
             atualizar_aluno(id_aluno, aluno)
             return redirect(url_for('alunos.get_aluno', id_aluno=id_aluno))
         except AlunoNaoEncontrado:
